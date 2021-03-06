@@ -17,7 +17,6 @@ This is consistent with other sort-stability preserving tools such as
 sorted(iterable, key=keyfunc, reverse=True)[0] and 
 heapq.nlargest(1, iterable, key=keyfunc).
 '''
-
 '''
 1. Return largest item of the interable object   --Done
 2. Return largest item of multiple argument      --Done
