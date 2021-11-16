@@ -1,0 +1,73 @@
+set exrc
+set tabstop=4 softtabstop=4
+set nu
+set guicursor=
+set nohlsearch
+set hidden
+set incsearch
+set scrolloff=8
+set signcolumn=yes
+set colorcolumn=80
+set relativenumber
+set complete+=kspell				"Spell a vocabulary word Ctrl + p" 
+set completeopt=menuone,longest
+
+call plug#begin('~/.vim/plugged')
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'gruvbox-community/gruvbox' 
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'frazrepo/vim-rainbow'
+Plug 'preservim/nerdcommenter'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'tpope/vim-surround' 
+call plug#end()
+
+colorscheme gruvbox
+highlight Normal guibg=none
+
+nnoremap <C-f> :Files<Cr>				
+"Fuzz search File
+
+set laststatus=2						"Lightline settingi
+let g:rainbow_active = 1				"Rainbow laod
+let mapleader = ","						"Vim commenter
+
+
+" Navigate the complete menu items like CTRL+n / CTRL+p would.
+inoremap <expr> <Down> pumvisible() ? "<C-n>" :"<Down>"
+inoremap <expr> <Up> pumvisible() ? "<C-p>" : "<Up>"
+
+" Select the complete menu item like CTRL+y would.
+inoremap <expr> <Right> pumvisible() ? "<C-y>" : "<Right>"
+inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
+
+" Cancel the complete menu item like CTRL+e would.
+inoremap <expr> <Left> pumvisible() ? "<C-e>" : "<Left>"
+
+
+" Adding double brackes"
+
+inoremap ( ()<ESC>i
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap { {<CR>}<ESC>O
+inoremap } <c-r>=ClosePair('}')<CR>
+inoremap [ []<ESC>i
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+inoremap ` ``<ESC>i
+inoremap ` ``<ESC>i
+
+function! ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+		        return "\<Right>"
+	else
+			    return a:char
+	endif
+endfunction
+
+" Removing double brackes
+
